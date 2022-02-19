@@ -1,19 +1,6 @@
-# make sure the library os is imported
 import os
-
-#then set the 'MPLCONFIGDIR' to '/tmp'
 os.environ['MPLCONFIGDIR'] = '/tmp'
-import plotly.graph_objects as go
-import dash
-from dash import dcc
-from dash import html
-import matplotlib.pyplot as plt
-import numpy as np        # numeric python
 from random import shuffle
-import seaborn as sns
-from matplotlib import pyplot as plt
-from matplotlib.animation import FuncAnimation, writers
-import numpy as np
 import animation as an
 import sort as so
 
@@ -28,5 +15,3 @@ an.init(sz)
 some_list=create_random_list(sz)
 so.bubbleSort(some_list)
 an.show()
-
-
