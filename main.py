@@ -14,6 +14,7 @@ import seaborn as sns
 from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation, writers
 import numpy as np
+import animation as an
 
 def create_random_list(length):
   some_list = [i for i in range(length)]
@@ -30,10 +31,12 @@ def animation_function(i):
   ax.bar(range(len(frame)),frame,color=palette)
 
 sz= int(input("Enter number of elements to sort: "))
-palette = list(reversed(sns.color_palette("seismic", sz).as_hex()))
-fig=plt.figure()
-ax=fig.add_subplot()
-ax.set_ylim(0, sz)
+
+an.init_animation(sz)
+#palette = list(reversed(sns.color_palette("seismic", sz).as_hex()))
+#fig=plt.figure()
+#ax=fig.add_subplot()
+#ax.set_ylim(0, sz)
 
 some_list=create_random_list(sz)
 animList=[some_list]
@@ -46,12 +49,12 @@ while swapped:
     if some_list[i] > some_list[i + 1]:
       some_list[i],some_list[i+1] = some_list[i+1],some_list[i]
       swapped = True
-      animList.append(some_list.copy())
+      an.data.append(some_list.copy())
 
 	
 
 
-animation = FuncAnimation(fig, animation_function,
-						frames=len(animList),interval = 2)
+animation = FuncAnimation(an.fig, an.animation_function,
+						frames=len(an.data),interval = 2)
 plt.show()
 
