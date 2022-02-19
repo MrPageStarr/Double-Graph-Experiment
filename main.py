@@ -29,12 +29,13 @@ def animation_function(i):
     
   ax.bar(range(len(frame)),frame,color=palette)
 
-palette = list(reversed(sns.color_palette("seismic", 10).as_hex()))
+sz= int(input("Enter number of elements to sort: "))
+palette = list(reversed(sns.color_palette("seismic", sz).as_hex()))
 fig=plt.figure()
 ax=fig.add_subplot()
-ax.set_ylim(0, 10)
+ax.set_ylim(0, sz)
 
-some_list=create_random_list(10)
+some_list=create_random_list(sz)
 animList=[some_list]
 
 swapped = True
@@ -45,12 +46,12 @@ while swapped:
     if some_list[i] > some_list[i + 1]:
       some_list[i],some_list[i+1] = some_list[i+1],some_list[i]
       swapped = True
-      animList.append(some_list)
+      animList.append(some_list.copy())
 
 	
 
 
 animation = FuncAnimation(fig, animation_function,
-						frames=len(animList),interval = 10)
+						frames=len(animList),interval = 2)
 plt.show()
 
