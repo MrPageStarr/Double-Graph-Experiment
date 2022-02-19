@@ -15,44 +15,19 @@ from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation, writers
 import numpy as np
 import animation as an
+import sort as so
 
 def create_random_list(length):
   some_list = [i for i in range(length)]
   shuffle(some_list)
   return some_list
 
-def animation_function(i):
-  
-  frame = animList[i]
-  
-  for idx in ax.containers:
-    idx.remove()
-    
-  ax.bar(range(len(frame)),frame,color=palette)
-
 sz= int(input("Enter number of elements to sort: "))
 
 an.init_animation(sz)
-#palette = list(reversed(sns.color_palette("seismic", sz).as_hex()))
-#fig=plt.figure()
-#ax=fig.add_subplot()
-#ax.set_ylim(0, sz)
-
 some_list=create_random_list(sz)
-animList=[some_list]
 
-swapped = True
-
-while swapped:
-  swapped = False
-  for i in range(len(some_list)-1):
-    if some_list[i] > some_list[i + 1]:
-      some_list[i],some_list[i+1] = some_list[i+1],some_list[i]
-      swapped = True
-      an.data.append(some_list.copy())
-
-	
-
+so.bubbleSort(some_list)
 
 animation = FuncAnimation(an.fig, an.animation_function,
 						frames=len(an.data),interval = 2)
