@@ -1,8 +1,8 @@
 import seaborn as sns
 from matplotlib import pyplot as plt
+from matplotlib.animation import FuncAnimation
 
-
-def animation_function(i):
+def function(i):
   global ax
   frame = data[i]
   
@@ -11,10 +11,7 @@ def animation_function(i):
     
   ax.bar(range(len(frame)),frame,color=palette)
 
-
-
-
-def init_animation(size):
+def init(size):
   global data,fig,ax,palette
   data=[]
   fig=plt.figure()
@@ -22,11 +19,9 @@ def init_animation(size):
   palette = list(reversed(sns.color_palette("seismic", size).as_hex()))
   ax.set_ylim(0, size)
 
-def animation_function(i):
-  
-  frame = data[i]
+def show():
+  animation = FuncAnimation(fig, function,
+						frames=len(data),interval = 2)
+  plt.show()
 
-  for idx in ax.containers:
-    idx.remove()
-    
-  ax.bar(range(len(frame)),frame,color=palette)  
+ 

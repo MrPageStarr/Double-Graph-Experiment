@@ -24,12 +24,9 @@ def create_random_list(length):
 
 sz= int(input("Enter number of elements to sort: "))
 
-an.init_animation(sz)
+an.init(sz)
 some_list=create_random_list(sz)
-
 so.bubbleSort(some_list)
+an.show()
 
-animation = FuncAnimation(an.fig, an.animation_function,
-						frames=len(an.data),interval = 2)
-plt.show()
 
